@@ -1,0 +1,31 @@
+{
+    "name": "react-ssr-music",
+    "version": "1.0.0",
+    "description": "使用react+koa的音乐同构项目",
+    "main": "main.js",
+    "scripts": {
+        "dev": "webpack --progress --config build/webpack.base.config.js"
+    },
+    "keywords": [
+        "react",
+        "koa",
+        "ssr",
+        "直出"
+    ],
+    "author": "zhengw",
+    "license": "ISC",
+    "dependencies": {
+        "react": "^16.8.3",
+        "react-dom": "^16.8.3"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.2.3",
+        "@babel/core": "^7.3.4",
+        "@babel/preset-env": "^7.3.4",
+        "@babel/preset-react": "^7.0.0",
+        "babel-loader": "^8.0.5",
+        "html-webpack-plugin": "^3.2.0",
+        "webpack": "^4.29.5",
+        "webpack-cli": "^3.2.3"
+    }
+}
