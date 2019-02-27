@@ -1,5 +1,5 @@
 node_modules
-assets
+dist
 .svn
 .cache
 .idea
