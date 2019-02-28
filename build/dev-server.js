@@ -12,7 +12,7 @@ app.use(webpackDevMiddleware(compiler), {
     publicPath: config.output.publicPath
 });
 
-// TODO 并不难热更新
+// TODO 并不能热更新
 app.use(webpackHotMiddleware(compiler));
 
 app.listen('8000', () => {

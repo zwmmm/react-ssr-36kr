@@ -4,7 +4,9 @@
     "description": "使用react+koa的音乐同构项目",
     "main": "main.js",
     "scripts": {
-        "dev": "node build/dev-server.js"
+        "dev": "node build/dev-server.js",
+        "build": "webpack --config build/webpack.server.config",
+        "start": "node dist/server.js"
     },
     "keywords": [
         "react",
@@ -15,6 +17,7 @@
     "author": "zhengw",
     "license": "ISC",
     "dependencies": {
+        "@babel/plugin-proposal-decorators": "^7.3.0",
         "koa": "^2.7.0",
         "react": "^16.8.3",
         "react-dom": "^16.8.3"
@@ -22,6 +25,7 @@
     "devDependencies": {
         "@babel/cli": "^7.2.3",
         "@babel/core": "^7.3.4",
+        "@babel/plugin-transform-modules-commonjs": "^7.2.0",
         "@babel/preset-env": "^7.3.4",
         "@babel/preset-react": "^7.0.0",
         "babel-loader": "^8.0.5",
@@ -30,6 +34,7 @@
         "koa-webpack-hot-middleware": "^1.0.3",
         "webpack": "^4.29.5",
         "webpack-cli": "^3.2.3",
-        "webpack-merge": "^4.2.1"
+        "webpack-merge": "^4.2.1",
+        "webpack-node-externals": "^1.7.2"
     }
 }
