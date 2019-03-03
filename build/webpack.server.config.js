@@ -15,6 +15,10 @@ const serverConfig = {
         filename: 'server.js',
         libraryTarget: 'commonjs2'
     },
+    node: {
+        __filename: false,
+        __dirname: false
+    },
     target: 'node',
     externals: [nodeExternals()], // 不把node_modules中的文件打包
     module: {

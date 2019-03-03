@@ -1,12 +1,19 @@
 import Koa from 'koa';
 import React from 'react'; // jsx 编译后的代码会用到 React，所以在这里需要先引入React
 import { renderToString } from 'react-dom/server';
+import { StaticRouter } from 'react-router-dom';
+import RouterConfig from '../app/router';
+import render from './render';
 
 const app = new Koa();
-const Index = () => <div>music heheh</div>
+const context = {};
 app.use(async ctx => {
-    const html = renderToString(<Index/>);
-    ctx.body = html;
+    const html = renderToString(
+        <StaticRouter location={ctx.url} context={context}>
+            <RouterConfig/>
+        </StaticRouter>
+    );
+    ctx.body = render('server', { html });
 })
 
 app.listen('8001', () => {
