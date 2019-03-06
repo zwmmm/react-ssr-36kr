@@ -1,17 +1,25 @@
 const merge = require('webpack-merge');
 const webpack = require('webpack');
 const baseConfig = require('./webpack.base.config');
+const { resolve } = require('./utils');
+const config = require('./config');
 
-module.exports = merge(baseConfig, {
-    output: {
-        publicPath: '/'
+const mode = config.development;
+
+module.exports = merge(baseConfig(mode), {
+    devtool: mode.devtool,
+    mode: mode.env,
+    devServer: {
+        port: mode.port,
+        publicPath: mode.publicPath,
     },
     plugins: [
-        // TODO JSON.stringify (https://www.webpackjs.com/plugins/define-plugin/)
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: JSON.stringify('development')
+                NODE_ENV: JSON.stringify(mode.env),
             }
-        })
+        }),
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
     ],
 })

@@ -1,5 +1,5 @@
 import ReactDom from 'react-dom'
-import {BrowserRouter} from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import React from 'react'
 import RouterConfig from './router'
 

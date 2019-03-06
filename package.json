@@ -4,9 +4,9 @@
     "description": "使用react+koa的音乐同构项目",
     "main": "main.js",
     "scripts": {
-        "dev": "node build/dev-server.js",
-        "build": "webpack --config build/webpack.server.config",
-        "start": "node dist/server.js"
+        "build": "export NODE_ENV=production && webpack --progress --hide-modules --config build/webpack.prod.config.js",
+        "static": "export NODE_ENV=development && webpack-dev-server --hot --config build/webpack.dev.config.js",
+        "server:dev": "export NODE_ENV=development && nodemon ./server/index.js"
     },
     "keywords": [
         "react",
@@ -17,26 +17,38 @@
     "author": "zhengw",
     "license": "ISC",
     "dependencies": {
-        "@babel/plugin-proposal-decorators": "^7.3.0",
+        "isomorphic-fetch": "^2.2.1",
         "koa": "^2.7.0",
         "koa-router": "^7.4.0",
+        "koa-static": "^5.0.0",
+        "koa-webpack-hot-middleware": "^1.0.3",
         "react": "^16.8.3",
         "react-dom": "^16.8.3",
+        "react-redux": "^6.0.1",
         "react-router-dom": "^4.3.1"
     },
     "devDependencies": {
         "@babel/cli": "^7.2.3",
         "@babel/core": "^7.3.4",
-        "@babel/plugin-transform-modules-commonjs": "^7.2.0",
+        "@babel/plugin-proposal-decorators": "^7.3.0",
+        "@babel/plugin-transform-runtime": "^7.3.4",
+        "@babel/polyfill": "^7.2.5",
         "@babel/preset-env": "^7.3.4",
         "@babel/preset-react": "^7.0.0",
+        "@babel/register": "^7.0.0",
+        "@babel/runtime": "^7.3.4",
         "babel-loader": "^8.0.5",
+        "clean-webpack-plugin": "^1.0.1",
+        "css-loader": "^2.1.0",
+        "html-loader": "^0.5.5",
         "html-webpack-plugin": "^3.2.0",
         "koa-webpack-dev-middleware": "^2.0.2",
-        "koa-webpack-hot-middleware": "^1.0.3",
+        "less-loader": "^4.1.0",
+        "mini-css-extract-plugin": "^0.5.0",
+        "style-loader": "^0.23.1",
         "webpack": "^4.29.5",
         "webpack-cli": "^3.2.3",
-        "webpack-merge": "^4.2.1",
-        "webpack-node-externals": "^1.7.2"
+        "webpack-dev-server": "^3.2.1",
+        "webpack-merge": "^4.2.1"
     }
 }
