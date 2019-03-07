@@ -1,5 +1,5 @@
 import React from 'react';
-import fetch from '../../fetch/index';
+import { list } from '../api/music'
 
 export default class List extends React.Component {
     constructor() {
@@ -10,9 +10,8 @@ export default class List extends React.Component {
     }
 
     async componentDidMount() {
-        const res = await fetch('/api/list');
-        const list = await res.json();
-        this.setState({data: list});
+        const res = await list();
+        this.setState({data: res});
     }
 
     render() {

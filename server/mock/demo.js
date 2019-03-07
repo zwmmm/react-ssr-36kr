@@ -48,23 +48,15 @@ const types = [
 
 class Demo {
     fetchHome () {
-        return new Promise((resolve, reject) => {
+        return new Promise(resolve => {
             resolve({
-                seo: {
-                    title: 'SSR首页',
-                    keywords: 'SSR首页 Keywords',
-                    description: 'SSR首页 Description'
-                },
-                data: {
-                    movies,
-                    banner: 'https://coocssweb.github.io/photos/react-ssr/banner.jpg'
-                }
+                music: movies,
             });
         });
     }
 
     fetchList () {
-        return new Promise((resolve, reject) => {
+        return new Promise(resolve => {
             resolve(types);
         });
     }

@@ -4,6 +4,8 @@ import { StaticRouter } from 'react-router-dom'
 import RouterConfig from '../app/router'
 import React from 'react';
 import path from 'path';
+import { Provider } from 'react-redux';
+import createStore from '../app/redux/store/createStore';
 
 function templating(props) {
     const template = fs.readFileSync(path.join(__dirname, '../template/server.html'), 'utf-8');
@@ -12,16 +14,18 @@ function templating(props) {
 
 export default function (ctx, next) {
     try {
-        const context = {};
-        const html = renderToString(
-            <StaticRouter location={ctx.url} context={context}>
-                <RouterConfig/>
-            </StaticRouter>
-        );
-        ctx.render = (model = {}) => {
+        ctx.render = (data = {}) => {
+            const store = createStore(data);
+            const html = renderToString(
+                <Provider store={store}>
+                    <StaticRouter location={ctx.url} context={data}>
+                        <RouterConfig/>
+                    </StaticRouter>
+                </Provider>
+            );
             const body = templating({
                 html,
-                model,
+                data: JSON.stringify(data, null, 4),
             });
             ctx.body = body;
         }
