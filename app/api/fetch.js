@@ -1,3 +1,6 @@
-import fetch from '../../fetch'
+import fetch from '../../fetch';
+import config from '../../build/config';
 
-export default fetch('/api');
+const base = config[process.env.NODE_ENV].api || '/api'
+
+export default fetch(base);

@@ -33,5 +33,6 @@ export default function (ctx, next) {
         ctx.body = templating({ html: err.message });
     }
     ctx.type = 'text/html';
-    next();
+    // 这里必须是return next() 不然异步路由是404
+    return next();
 }

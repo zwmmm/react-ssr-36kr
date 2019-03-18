@@ -7,6 +7,6 @@ const app = new Koa();
 app.use(templating);
 app.use(router.routes(), router.allowedMethods());
 
-app.listen('80', () => {
-    console.log('node服务已启动，服务地址为：locahost');
+app.listen('8001', () => {
+    console.log('node服务已启动，服务地址为：locahost:8001');
 });

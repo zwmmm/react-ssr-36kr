@@ -1,9 +1,10 @@
-import demo from '../mock/demo';
+import demo from '../mock/36kr';
 
 export default {
-    home: async (ctx, next) => {
-        const homeData = await demo.fetchHome();
-        ctx.body = homeData;
+    flash: async (ctx, next) => {
+        const { id, page } = ctx.query;
+        const homeData = await demo.fetchFlash(id, page || 10);
+        ctx.body = homeData.data;
         ctx.type = 'json';
         next();
     },

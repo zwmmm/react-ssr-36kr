@@ -1,11 +1,9 @@
 import Router from 'koa-router';
 import htmlControl from '../controllers/html';
 
-let router = new Router({
-    prefix: '/'
-});
+let router = new Router();
 
-router.get('', htmlControl.home);
-router.get('list', htmlControl.list);
+router.get('/', htmlControl.home);
+router.get('/list', htmlControl.list);
 
 export default router;

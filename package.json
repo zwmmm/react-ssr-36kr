@@ -6,7 +6,7 @@
     "scripts": {
         "build": "export NODE_ENV=production && webpack --progress --hide-modules --config build/webpack.prod.config.js",
         "static": "export NODE_ENV=development && webpack-dev-server --hot --config build/webpack.dev.config.js",
-        "server:dev": "export NODE_ENV=development && nodemon ./server/index.js"
+        "server:dev": "export NODE_ENV=development && node ./server/index.js"
     },
     "keywords": [
         "react",
@@ -17,11 +17,13 @@
     "author": "zhengw",
     "license": "ISC",
     "dependencies": {
+        "classnames": "^2.2.6",
         "isomorphic-fetch": "^2.2.1",
         "koa": "^2.7.0",
         "koa-router": "^7.4.0",
         "koa-static": "^5.0.0",
         "koa-webpack-hot-middleware": "^1.0.3",
+        "normalize.css": "^8.0.1",
         "react": "^16.8.3",
         "react-dom": "^16.8.3",
         "react-redux": "^6.0.1",
@@ -31,7 +33,22 @@
     "devDependencies": {
         "@babel/cli": "^7.2.3",
         "@babel/core": "^7.3.4",
+        "@babel/plugin-proposal-class-properties": "^7.3.4",
         "@babel/plugin-proposal-decorators": "^7.3.0",
+        "@babel/plugin-proposal-do-expressions": "^7.2.0",
+        "@babel/plugin-proposal-export-default-from": "^7.2.0",
+        "@babel/plugin-proposal-export-namespace-from": "^7.2.0",
+        "@babel/plugin-proposal-function-bind": "^7.2.0",
+        "@babel/plugin-proposal-function-sent": "^7.2.0",
+        "@babel/plugin-proposal-json-strings": "^7.2.0",
+        "@babel/plugin-proposal-logical-assignment-operators": "^7.2.0",
+        "@babel/plugin-proposal-nullish-coalescing-operator": "^7.2.0",
+        "@babel/plugin-proposal-numeric-separator": "^7.2.0",
+        "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+        "@babel/plugin-proposal-pipeline-operator": "^7.3.2",
+        "@babel/plugin-proposal-throw-expressions": "^7.2.0",
+        "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+        "@babel/plugin-syntax-import-meta": "^7.2.0",
         "@babel/plugin-transform-runtime": "^7.3.4",
         "@babel/polyfill": "^7.2.5",
         "@babel/preset-env": "^7.3.4",
@@ -44,6 +61,7 @@
         "html-loader": "^0.5.5",
         "html-webpack-plugin": "^3.2.0",
         "koa-webpack-dev-middleware": "^2.0.2",
+        "less": "^3.9.0",
         "less-loader": "^4.1.0",
         "mini-css-extract-plugin": "^0.5.0",
         "style-loader": "^0.23.1",

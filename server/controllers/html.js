@@ -1,13 +1,14 @@
-import mock from '../mock/demo'
+import mock from '../mock/36kr'
 
 export default {
     home: async (ctx, next) => {
-        const data = await mock.fetchHome();
-        ctx.render({ home: data });
+        const res = await mock.fetchFlash();
+        ctx.render({ home: { news: res.data.items } });
         next();
     },
     list: async (ctx, next) => {
-        ctx.render();
+        const data = await mock.fetchList();
+        ctx.render({ list: data });
         next();
     }
 }

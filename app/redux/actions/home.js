@@ -1,7 +1,7 @@
 import * as homeActionTypes from '../constants/home';
-import api from '../../api/music'
+import * as api from '../../api/36kr'
 
-export const fetchHome = () => ({
+export const fetchHome = (id) => ({
     types: [homeActionTypes.HOME_FETCH, homeActionTypes.HOME_SUCCESS, homeActionTypes.HOME_FAILURE],
-    sync: () => api.music()
+    sync: () => api.news(id ? { id } : {})
 })

@@ -4,6 +4,8 @@ import React from 'react';
 import RouterConfig from './router';
 import { Provider } from 'react-redux';
 import createStore from './redux/store/createStore';
+import 'normalize.css';
+import './styles/index.less'
 
 const store = createStore(window.__STORE__);
 

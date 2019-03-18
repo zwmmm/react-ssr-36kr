@@ -1,35 +1,48 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import * as homeActions from '../redux/actions/home';
-import Page from '../components/Page'
+import News from '../components/News'
+import Top from '../components/Top'
+import TabBar from '../components/TabBar'
 
 function mapStateTpProps(state) {
     return { ...state.home };
 }
 
-function mapDispathToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
     return {
-        fetchHome: () => dispatch(homeActions.fetchHome())
+        fetchHome: (id) => dispatch(homeActions.fetchHome(id))
     }
 }
 
 class Home extends React.Component {
+    state = {
+        tabs: [
+            { title: '24h快讯', index: 0 },
+            { title: '科技新闻', index: 1 }
+        ],
+    }
     componentDidMount() {
-        // this.props.fetchHome();
+        const { news, fetchHome } = this.props;
+        news.length || fetchHome();
+    }
+
+    handlerReachBottom = (id) => {
+        this.props.fetchHome(id);
     }
 
     render() {
-        const { loaded, music } = this.props;
+        const { loaded, news } = this.props;
         return (
-            <Page loaded={loaded}>
-                <Link to="/list">跳转list</Link>
-                <ul>
-                    { music.map(item => <li key={ item.id }>{ item.title }</li>) }
-                </ul>
-            </Page>
+            <div>
+                <Top/>
+                <TabBar tabs={ this.state.tabs }>
+                    <News loaded={ loaded } data={ news } onReachBottom={ this.handlerReachBottom }/>
+                    <News loaded={ loaded } data={ news } onReachBottom={ this.handlerReachBottom }/>
+                </TabBar>
+            </div>
         )
     }
 }
 
-export default connect(mapStateTpProps, mapDispathToProps)(Home)
+export default connect(mapStateTpProps, mapDispatchToProps)(Home)

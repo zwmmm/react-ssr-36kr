@@ -1,20 +1,30 @@
 import React from 'react';
-import { list } from '../api/music'
+import { connect } from 'react-redux'
+import * as listActions from '../redux/actions/list'
 
-export default class List extends React.Component {
+function mapStateToProps(state) {
+    return { ...state.list };
+}
+
+function mapDispatchToProps(dispath) {
+    return {
+        fetchList: () => dispath(listActions.fetchList())
+    }
+}
+
+class List extends React.Component {
     constructor() {
         super();
-        this.state = {
-            data: [],
-        }
     }
 
     async componentDidMount() {
-        const res = await list();
-        this.setState({data: res});
+        const { data, fetchList } = this.props;
+        data.length || fetchList();
     }
 
     render() {
-        return <ul>{this.state.data.map(item => <li key={item.id}>{item.name}</li>)}</ul>
+        return <ul>{this.props.data.map(item => <li key={item.id}>{item.name}</li>)}</ul>
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(List);
