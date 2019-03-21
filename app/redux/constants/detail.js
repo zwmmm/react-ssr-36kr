@@ -1,0 +1,4 @@
+export const DETAIL_FETCH = 'DETAIL_FETCH';
+export const DETAIL_SUCCESS = 'DETAIL_SUCCESS';
+export const DETAIL_FAILURE = 'DETAIL_FAILURE';
+export const DETAIL_RESET = 'DETAIL_RESET'

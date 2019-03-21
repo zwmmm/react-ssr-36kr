@@ -1,7 +1,7 @@
 export default function () {
     return next => action => {
         const { sync, types, ...payload } = action;
-        if (!sync) return next();
+        if (!sync) return next({ type: types, ...payload });
         const [REQUEST, SUCCESS, FAILURE] = types;
         next({ type: REQUEST, ...payload });
         return sync()

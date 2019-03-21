@@ -1,5 +1,8 @@
 import fetch from 'isomorphic-fetch';
-const stringfly = body => Object.entries(body).map(item => `${item[0]}=${item[1]}`).join('&');
+const stringfly = body => {
+    if (!body) return '';
+    return Object.entries(body).map(item => `${item[0]}=${item[1]}`).join('&')
+};
 
 export default (baseUrl = '') => async (url = '', body = {}, method = 'GET') => {
     if (method === 'GET') {

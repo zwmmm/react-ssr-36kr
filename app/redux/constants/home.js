@@ -1,3 +1,7 @@
 export const HOME_FETCH = 'HOME_FETCH';
 export const HOME_SUCCESS = 'HOME_SUCCESS';
 export const HOME_FAILURE = 'HOME_FAILURE';
+
+export const COLUMN_FETCH = 'COLUMN_FETCH';
+export const COLUMN_SUCCESS = 'COLUMN_SUCCESS';
+export const COLUMN_FAILURE = 'COLUMN_FAILURE';

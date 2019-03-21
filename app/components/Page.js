@@ -1,7 +1,11 @@
-import { Fragment } from 'react';
 import React from 'react';
+import Loading from '../components/Spinner'
 
 export default function ({ loaded, children }) {
-    const page = loaded ? <div>加载中....</div> : children
-    return <Fragment>{ page }</Fragment>
+    return (
+        <div>
+            { children }
+            { loaded ? <Loading/> : null }
+        </div>
+    )
 }

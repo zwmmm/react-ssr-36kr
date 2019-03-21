@@ -4,6 +4,7 @@ import * as homeActions from '../redux/actions/home';
 import News from '../components/News'
 import Top from '../components/Top'
 import TabBar from '../components/TabBar'
+import Column from '../components/Column'
 
 function mapStateTpProps(state) {
     return { ...state.home };
@@ -11,33 +12,45 @@ function mapStateTpProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        fetchHome: (id) => dispatch(homeActions.fetchHome(id))
+        fetchHome: (id) => dispatch(homeActions.fetchHome(id)),
+        fetchColumn: (page) => dispatch(homeActions.fetchColumn(page)),
     }
 }
 
 class Home extends React.Component {
     state = {
         tabs: [
-            { title: '24h快讯', index: 0 },
-            { title: '科技新闻', index: 1 }
+            { title: '科技新闻', index: 0 },
+            { title: '24h快讯', index: 1 }
         ],
+        columnPage: 1,
     }
     componentDidMount() {
-        const { news, fetchHome } = this.props;
-        news.length || fetchHome();
+        const { news, fetchHome, column, fetchColumn } = this.props;
+        news.length > 0 || fetchHome();
+        column.length > 0 || fetchColumn();
     }
 
     handlerReachBottom = (id) => {
         this.props.fetchHome(id);
     }
 
+    handlerColumnReachBottom = () => {
+        this.setState(
+            state => ({ ...state, columnPage: state.columnPage + 1 }),
+            () => {
+                this.props.fetchColumn(this.state.columnPage);
+            }
+        )
+    }
+
     render() {
-        const { loaded, news } = this.props;
+        const { loaded, news, column, columnLoaded } = this.props;
         return (
             <div>
                 <Top/>
                 <TabBar tabs={ this.state.tabs }>
-                    <News loaded={ loaded } data={ news } onReachBottom={ this.handlerReachBottom }/>
+                    <Column loaded={ columnLoaded } data={ column } onReachBottom={ this.handlerColumnReachBottom }/>
                     <News loaded={ loaded } data={ news } onReachBottom={ this.handlerReachBottom }/>
                 </TabBar>
             </div>
