@@ -2,4 +2,5 @@
 
 react + koa 的一个ssr案例
 
-![](https://user-gold-cdn.xitu.io/2019/3/21/169a0b0314a9ff21?w=1242&h=2223&f=png&s=1396755)![](https://user-gold-cdn.xitu.io/2019/3/21/169a0b083475b9cc?w=1242&h=2208&f=png&s=1234376)
+![](https://user-gold-cdn.xitu.io/2019/3/21/169a0b5d150163b8?w=1242&h=2223&f=png&s=1396755)
+![](https://user-gold-cdn.xitu.io/2019/3/21/169a0b55106f9f5d?w=1242&h=2208&f=png&s=1234376)
