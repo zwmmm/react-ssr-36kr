@@ -2,4 +2,4 @@
 
 react + koa 的一个ssr案例
 
-![](https://user-gold-cdn.xitu.io/2019/3/22/169a3a427abaf879?w=4000&h=2772&f=jpeg&s=871364)
+![](https://github.com/zwmmm/react-ssr-36kr/blob/master/doc/1.jpg)
