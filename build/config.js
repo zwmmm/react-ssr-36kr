@@ -13,6 +13,7 @@ module.exports = {
         imagePath: '',                          // 图片资源地址
         devtool: 'false',                       // devtool
         noHash: true,
+        template: 'template/build.html',
     },
     // 开发环境
     development: {
@@ -23,5 +24,6 @@ module.exports = {
         port: '8000',                           // 开发端口
         devtool: 'source-map',                  // devtool
         noHash: true,
+        template: 'template/app.html',
     }
 };

@@ -81,7 +81,7 @@ module.exports = config => {
         plugins: [
             new HtmlWebpackPlugin({
                 filename: 'index.html',
-                template: resolve('template/app.html')
+                template: resolve(config.template)
             })
         ]
     }

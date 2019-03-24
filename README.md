@@ -10,14 +10,14 @@
 npm i
 ```
 
-开发环境
+#### 开发环境
 
 ```js
 npm run static
 npm run server:dev
 ```
 
-生产环境
+#### 生产环境
 
 ```js
 npm run build
