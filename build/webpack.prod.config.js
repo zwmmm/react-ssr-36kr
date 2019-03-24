@@ -1,10 +1,12 @@
 const merge = require('webpack-merge');
 const webpack = require('webpack');
 const cleanWebpackPlugin = require('clean-webpack-plugin');
-const miniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const baseConfig = require('./webpack.base.config');
 const config = require('./config');
 const { resolve } = require('./utils');
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 const mode = config.production;
 
@@ -20,13 +22,6 @@ module.exports = merge(baseConfig(mode), {
             automaticNameDelimiter: '~',
             name: true,
             cacheGroups: {
-                common: {
-                    test: /[\\/]src\/common[\\/]/,
-                    chunks: 'all',
-                    name: 'common',
-                    minChunks: 1,
-                    priority: 10
-                },
                 vendor: {
                     test: /[\\/]node_modules[\\/]/,
                     chunks: 'all',
@@ -38,7 +33,16 @@ module.exports = merge(baseConfig(mode), {
         },
         runtimeChunk: {
             name: 'manifest',
-        }
+        },
+        // 压缩css，由于配置css的压缩会覆盖默认的js压缩，所以js压缩也需要手动配置下
+        minimizer: [
+            new UglifyJsPlugin({
+                cache: true,
+                parallel: true,
+                sourceMap: true // set to true if you want JS source maps
+            }),
+            new OptimizeCSSAssetsPlugin({})
+        ]
     },
     plugins: [
         new webpack.DefinePlugin({
@@ -51,8 +55,8 @@ module.exports = merge(baseConfig(mode), {
         new cleanWebpackPlugin([resolve('dist')]),
 
         // 抽离css，命名采用contenthash
-        new miniCssExtractPlugin({
-            filename: 'css/[name].css'
+        new MiniCssExtractPlugin({
+            filename: 'css/[name].css',
         }),
     ],
 })

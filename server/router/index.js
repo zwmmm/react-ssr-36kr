@@ -3,7 +3,7 @@ import htmlRouter from './html';
 import Router from 'koa-router';
 
 let router = Router();
-router.use(apiRouter.routes(), apiRouter.allowedMethods());
-router.use(htmlRouter.routes(), htmlRouter.allowedMethods());
+router.use(apiRouter.routes());
+router.use(htmlRouter.routes());
 
 export default router;

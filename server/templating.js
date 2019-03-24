@@ -7,12 +7,13 @@ import path from 'path';
 import { Provider } from 'react-redux';
 import createStore from '../app/redux/store/createStore';
 
-function templating(props) {
-    const template = fs.readFileSync(path.join(__dirname, '../template/server.html'), 'utf-8');
-    return template.replace(/{{([\s\S]*?)}}/g, (_, key) => props[key.trim()]);
+function templating(path) {
+    const template = fs.readFileSync(path, 'utf-8');
+    return props => template.replace(/{{([\s\S]*?)}}/g, (_, key) => props[key.trim()]);
 }
 
-export default function (ctx, next) {
+export default path => (ctx, next) => {
+    const __templating__ = templating(path);
     try {
         ctx.render = (data = {}) => {
             const store = createStore(data);
@@ -23,16 +24,17 @@ export default function (ctx, next) {
                     </StaticRouter>
                 </Provider>
             );
-            const body = templating({
+            const body = __templating__({
                 html,
                 data: JSON.stringify(data, null, 4),
             });
             ctx.body = body;
+            ctx.type = 'text/html';
         }
     } catch(err) {
-        ctx.body = templating({ html: err.message });
+        ctx.body = __templating__({ html: err.message });
+        ctx.type = 'text/html';
     }
-    ctx.type = 'text/html';
     // 这里必须是return next() 不然异步路由是404
     return next();
 }

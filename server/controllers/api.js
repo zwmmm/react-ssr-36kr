@@ -8,12 +8,6 @@ export default {
         ctx.type = 'json';
         next();
     },
-    list: async (ctx, next) => {
-        const listData = await demo.fetchList();
-        ctx.body = listData;
-        ctx.type = 'json';
-        next();
-    },
     column: async (ctx, next) => {
         const { page } = ctx.query;
         const data = await demo.fetchColumn(page || 1);

@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch';
+
 const stringfly = body => {
     if (!body) return '';
     return Object.entries(body).map(item => `${item[0]}=${item[1]}`).join('&')
@@ -12,7 +13,7 @@ export default (baseUrl = '') => async (url = '', body = {}, method = 'GET') => 
     const res = await fetch(baseUrl + url, {
         credentials: 'include',
         method,
-        ...(body ? {body} : {}),
+        ...(body ? { body } : {}),
     });
     return await res.json();
 }

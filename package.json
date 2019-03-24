@@ -4,9 +4,10 @@
     "description": "使用react+koa的音乐同构项目",
     "main": "main.js",
     "scripts": {
-        "build": "export NODE_ENV=production && webpack --progress --hide-modules --config build/webpack.prod.config.js",
-        "static": "export NODE_ENV=development && webpack-dev-server --hot --config build/webpack.dev.config.js",
-        "server:dev": "export NODE_ENV=development && node ./server/index.js"
+        "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.prod.config.js",
+        "static": "cross-env NODE_ENV=development webpack-dev-server --hot --config build/webpack.dev.config.js",
+        "server:dev": "cross-env NODE_ENV=development node ./server/index.js",
+        "server": "cross-env NODE_ENV=production node ./server/index.js"
     },
     "keywords": [
         "react",
@@ -57,6 +58,7 @@
         "@babel/runtime": "^7.3.4",
         "babel-loader": "^8.0.5",
         "clean-webpack-plugin": "^1.0.1",
+        "cross-env": "^5.2.0",
         "css-loader": "^2.1.0",
         "html-loader": "^0.5.5",
         "html-webpack-plugin": "^3.2.0",
@@ -64,7 +66,9 @@
         "less": "^3.9.0",
         "less-loader": "^4.1.0",
         "mini-css-extract-plugin": "^0.5.0",
+        "optimize-css-assets-webpack-plugin": "^5.0.1",
         "style-loader": "^0.23.1",
+        "uglifyjs-webpack-plugin": "^2.1.2",
         "webpack": "^4.29.5",
         "webpack-cli": "^3.2.3",
         "webpack-dev-server": "^3.2.1",

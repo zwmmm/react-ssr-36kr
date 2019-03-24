@@ -2,8 +2,8 @@ import mock from '../mock/36kr'
 
 export default {
     home: async (ctx, next) => {
-        const promises = [ mock.fetchFlash(), mock.fetchColumn() ]
-        const [ res, column ] = await Promise.all(promises);
+        const promises = [mock.fetchFlash(), mock.fetchColumn()]
+        const [res, column] = await Promise.all(promises);
         ctx.render({
             home: {
                 news: res.data.items,
