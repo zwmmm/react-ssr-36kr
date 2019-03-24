@@ -32,6 +32,7 @@ class Home extends React.Component {
     }
 
     handlerReachBottom = (id) => {
+        console.log(111)
         this.props.fetchHome(id);
     }
 

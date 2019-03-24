@@ -52,7 +52,7 @@ export default class News extends React.Component {
     componentDidMount() {
         // 创建观察对象
         this.io = new IntersectionObserver(this.handlerReachBottom);
-        this.io.observe(document.querySelector('.loading'));
+        this.io.observe(document.querySelector('#news-box .loading'));
     }
 
     componentWillUnmount() {
@@ -66,10 +66,11 @@ export default class News extends React.Component {
 
     // 到底加载更多
     handlerReachBottom = changes => {
-        const change = changes[ 0 ];
+        const change = changes[0];
         if (!change.isIntersecting) return;
         const { data, onReachBottom } = this.props;
-        const endID = data[ data.length - 1 ].id;
+        const preItem = data[data.length - 1];
+        const endID = preItem ? preItem.id : undefined;
         onReachBottom(endID);
     }
 
@@ -77,7 +78,7 @@ export default class News extends React.Component {
         const { data, style } = this.props;
         return (
             <ul id="news-box" style={ style }>
-                { data.map((item, i) => <Item { ...item } key={ item.id } preItem={ data[ i - 1 ] }/>) }
+                { data.map((item, i) => <Item { ...item } key={ item.id } preItem={ data[i - 1] }/>) }
                 <Loading className="loading"/>
             </ul>
         )

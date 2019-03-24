@@ -32,7 +32,7 @@ export default class News extends React.Component {
     componentDidMount() {
         // 创建观察对象
         this.io = new IntersectionObserver(this.handlerReachBottom);
-        this.io.observe(document.querySelector('.loading'));
+        this.io.observe(document.querySelector('#column-box .loading'));
     }
 
     componentWillUnmount() {
