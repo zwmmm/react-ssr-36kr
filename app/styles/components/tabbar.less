@@ -1,0 +1,34 @@
+.tab-bar-top {
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid #f2f2f2;
+    font-size: 18px;
+    background-color: #fff;
+    z-index: 100;
+}
+
+.tab-bar-title {
+    text-align: center;
+    height: 44px;
+    line-height: 44px;
+    flex: 1;
+}
+
+.tab-bar-title.active {
+    color: #108ee9;
+}
+
+.tab-bar-content {
+    transition: transform .3s cubic-bezier(.35, 0, .25, 1), left .3s cubic-bezier(.35, 0, .25, 1), top .3s cubic-bezier(.35, 0, .25, 1), -webkit-transform .3s cubic-bezier(.35, 0, .25, 1);
+    will-change: transform, left, top;
+    display: flex;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    > * {
+        height: 0;
+        overflow: visible;
+        width: 100%;
+        flex-shrink: 0;
+    }
+}
