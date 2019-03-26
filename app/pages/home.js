@@ -6,7 +6,7 @@ import Top from '../components/Top'
 import TabBar from '../components/TabBar'
 import Column from '../components/Column'
 
-function mapStateTpProps(state) {
+function mapStateToProps(state) {
     return { ...state.home };
 }
 
@@ -59,4 +59,4 @@ class Home extends React.Component {
     }
 }
 
-export default connect(mapStateTpProps, mapDispatchToProps)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
