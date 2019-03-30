@@ -4,6 +4,10 @@
 
 ![](https://github.com/zwmmm/react-ssr-36kr/blob/master/doc/1.jpg)
 
+### 文章教程
+
+https://juejin.im/post/5c90b4115188252d9559136c
+
 ### 快速启动
 
 ```bash
