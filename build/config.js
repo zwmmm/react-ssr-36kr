@@ -9,7 +9,7 @@ module.exports = {
     production: {
         env: 'production',                      // 环境
         api: '/api',                            // api 接口地址
-        publicPath: 'http://47.104.196.138:8001',    // 静态资源地址
+        publicPath: 'http://47.104.196.138',    // 静态资源地址
         imagePath: '',                          // 图片资源地址
         devtool: 'false',                       // devtool
         noHash: true,
