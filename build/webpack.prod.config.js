@@ -7,6 +7,7 @@ const config = require('./config');
 const { resolve } = require('./utils');
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const mode = config.production;
 
@@ -58,5 +59,13 @@ module.exports = merge(baseConfig(mode), {
         new MiniCssExtractPlugin({
             filename: 'css/[name].css',
         }),
+
+        // cp 静态资源
+        new CopyWebpackPlugin([
+            {
+                from: resolve('static'),
+                to: resolve('dist')
+            }
+        ])
     ],
 })
