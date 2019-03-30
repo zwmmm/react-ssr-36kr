@@ -7,7 +7,7 @@
         "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.prod.config.js",
         "static": "cross-env NODE_ENV=development webpack-dev-server --hot --config build/webpack.dev.config.js",
         "server:dev": "cross-env NODE_ENV=development node ./server/index.js",
-        "server": "cross-env NODE_ENV=production node ./server/index.js"
+        "server": "cross-env NODE_ENV=production nohup ./server/index.js"
     },
     "keywords": [
         "react",
