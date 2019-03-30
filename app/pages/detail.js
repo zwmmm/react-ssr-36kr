@@ -34,13 +34,7 @@ class Detail extends React.Component {
         const data = this.props.data;
         const page = this.props.loaded
             ? <Loading/>
-            : (
-                <div className="detail">
-                    <h1 className="title">{ data.title }</h1>
-                    <section className="summary">{ data.summary }</section>
-                    <section className="content" dangerouslySetInnerHTML={ { __html: data.content } }/>
-                </div>
-            )
+            : <section className="article-body" dangerouslySetInnerHTML={ { __html: data } }/>
         return <Fragment>{ page }</Fragment>
     }
 }
