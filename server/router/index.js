@@ -1,9 +1,9 @@
 import apiRouter from './api';
-import htmlRouter from './html';
 import Router from 'koa-router';
+import htmlControl from '../controllers/html';
 
 let router = Router();
 router.use(apiRouter.routes());
-router.use(htmlRouter.routes());
+router.get('*', htmlControl);
 
 export default router;

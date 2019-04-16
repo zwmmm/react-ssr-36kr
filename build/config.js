@@ -18,7 +18,7 @@ module.exports = {
     // 开发环境
     development: {
         env: 'development',                     // 环境
-        api: '/api',                            // api 接口地址
+        api: 'http://localhost:8001/api',       // api 接口地址
         publicPath: 'http://localhost:8000',    // 静态资源地址
         imagePath: '',                          // 图片资源地址
         port: '8000',                           // 开发端口

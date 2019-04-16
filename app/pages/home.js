@@ -23,16 +23,19 @@ class Home extends React.Component {
             { title: '科技新闻', index: 0 },
             { title: '24h快讯', index: 1 }
         ],
-        columnPage: 1,
+        columnPage: 0,
     }
-    componentDidMount() {
-        const { news, fetchHome, column, fetchColumn } = this.props;
-        news.length > 0 || fetchHome();
-        column.length > 0 || fetchColumn();
+
+    static asyncData(store) {
+        const { fetchHome, fetchColumn } = mapDispatchToProps(store.dispatch);
+        // 这里必须return Promise 并且这里发起请求走的是node环境，api路径必须写绝对路径。
+        return Promise.all([
+            store.dispatch(fetchHome()),
+            store.dispatch(fetchColumn()),
+        ])
     }
 
     handlerReachBottom = (id) => {
-        console.log(111)
         this.props.fetchHome(id);
     }
 

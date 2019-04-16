@@ -1,23 +1,25 @@
-import mock from '../mock/36kr'
+import mock from '../mock/36kr';
+import { matchRoutes } from 'react-router-config';
+import routerConfig from '../../app/router';
+import createStore from '../../app/redux/store/createStore';
+import templating from '../templating'
 
-export default {
-    home: async (ctx, next) => {
-        const promises = [mock.fetchFlash(), mock.fetchColumn()]
-        const [res, column] = await Promise.all(promises);
-        ctx.render({
-            home: {
-                news: res.data.items,
-                column: column.data.items
-            }
+export default async (ctx, next) => {
+    const store = createStore();
+    const routes = matchRoutes(routerConfig, ctx.url);
+    if (routes.length > 0) {
+        // 等所有数据请求回来之后在render
+        const promises = routes
+        .filter(item => item.route.component.asyncData)
+        .map(item => {
+            return item.route.component.asyncData(store, {
+                params: ctx.params,
+                query: ctx.query
+            })
         });
-        next();
-    },
-    detail: async (ctx, next) => {
-        const { id } = ctx.params;
-        const data = await mock.fetchDetail(id);
-        ctx.render({
-            detail: { data, ssr: true }
-        });
-        next();
+        await Promise.all(promises);
+        templating(ctx, store, {});
+        return next();
     }
+    return next();
 }

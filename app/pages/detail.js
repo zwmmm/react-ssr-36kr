@@ -19,11 +19,13 @@ class Detail extends React.Component {
         super();
     }
 
+    static asyncData(store, route) {
+        return store.dispatch(detailActions.fetchDetail(route.params.id));
+    }
+
     componentDidMount() {
-        const { ssr, fetchDetail, match } = this.props;
-        if (!ssr) {
-            fetchDetail(match.params.id);
-        }
+        const { fetchDetail, match } = this.props;
+        fetchDetail(match.params.id);
     }
 
     componentWillUnmount() {

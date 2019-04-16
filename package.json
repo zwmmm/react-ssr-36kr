@@ -7,7 +7,7 @@
         "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.prod.config.js",
         "static": "cross-env NODE_ENV=development webpack-dev-server --hot --config build/webpack.dev.config.js",
         "server:dev": "cross-env NODE_ENV=development node ./server/index.js",
-        "server": "cross-env NODE_ENV=production nohup ./server/index.js &s"
+        "server": "cross-env NODE_ENV=production nohup ./server/index.js &"
     },
     "keywords": [
         "react",
@@ -29,6 +29,7 @@
         "react": "^16.8.3",
         "react-dom": "^16.8.3",
         "react-redux": "^6.0.1",
+        "react-router-config": "^5.0.0",
         "react-router-dom": "^4.3.1",
         "redux": "^4.0.1"
     },
