@@ -6,7 +6,7 @@ import config from './config'
 
 const app = new Koa();
 
-config.static();
+config.static(app);
 
 app.use(router.routes(), router.allowedMethods());
 

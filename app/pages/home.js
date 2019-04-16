@@ -30,8 +30,8 @@ class Home extends React.Component {
         const { fetchHome, fetchColumn } = mapDispatchToProps(store.dispatch);
         // 这里必须return Promise 并且这里发起请求走的是node环境，api路径必须写绝对路径。
         return Promise.all([
-            store.dispatch(fetchHome()),
-            store.dispatch(fetchColumn()),
+            fetchHome(),
+            fetchColumn(),
         ])
     }
 
