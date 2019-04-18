@@ -72,7 +72,7 @@ module.exports = merge(baseConfig(mode), {
         ]),
 
         new HtmlWebpackPlugin({
-            filename: 'server.tpl.html',
+            filename: mode.templateName,
             template: resolve(mode.template)
         })
     ],

@@ -1,7 +1,9 @@
 const fs = require('fs');
 const { renderToString } = require('react-dom/server');
 const path = require('path');
-const config = require('../config');
+
+const env = process.env.NODE_ENV
+const config = require('../../build/config')[env];
 const serverBundle = require('../../dist/server-bundle');
 
 function templating(path) {
@@ -10,7 +12,7 @@ function templating(path) {
 }
 
 module.exports = async (ctx, next) => {
-    const render = templating(config.templatePath);
+    const render = templating(path.resolve(config.output, config.templateName));
     try {
         const jsx = await serverBundle.default(ctx);
         const html = renderToString(jsx);
