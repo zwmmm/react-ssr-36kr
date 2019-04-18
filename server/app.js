@@ -1,7 +1,7 @@
-import Koa from 'koa';
-import router from './router';
-import path from 'path';
-import config from './config'
+const Koa = require('koa');
+const router = require('./router');
+const path = require('path');
+const config = require('./config');
 
 const app = new Koa();
 

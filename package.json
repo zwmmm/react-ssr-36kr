@@ -9,7 +9,7 @@
         "build": "npm run build:client && npm run build:server",
         "static": "cross-env NODE_ENV=development webpack-dev-server --hot --config build/webpack.dev.config.js",
         "server:dev": "cross-env NODE_ENV=development node ./server/index.js",
-        "start": "cross-env NODE_ENV=production node ./server/index.js"
+        "start": "cross-env NODE_ENV=production node ./server/app.js"
     },
     "keywords": [
         "react",

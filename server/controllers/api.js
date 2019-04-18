@@ -1,6 +1,6 @@
-import demo from '../mock/36kr';
+const demo = require('../mock/36kr');
 
-export default {
+module.exports = {
     flash: async (ctx, next) => {
         const { id, page } = ctx.query;
         const homeData = await demo.fetchFlash(id, page || 10);

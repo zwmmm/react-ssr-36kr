@@ -1,7 +1,7 @@
-import fs from 'fs';
-import { renderToString } from 'react-dom/server'
-import path from 'path';
-import config from '../config';
+const fs = require('fs');
+const { renderToString } = require('react-dom/server');
+const path = require('path');
+const config = require('../config');
 const serverBundle = require('../../dist/server-bundle');
 
 function templating(path) {
@@ -9,7 +9,7 @@ function templating(path) {
     return props => template.replace(/{{([\s\S]*?)}}/g, (_, key) => props[key.trim()]);
 }
 
-export default async (ctx, next) => {
+module.exports = async (ctx, next) => {
     const render = templating(config.templatePath);
     try {
         const jsx = await serverBundle.default(ctx);

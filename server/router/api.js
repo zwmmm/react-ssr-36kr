@@ -1,5 +1,5 @@
-import Router from 'koa-router';
-import ApiControl from '../controllers/api';
+const Router = require('koa-router');
+const ApiControl = require('../controllers/api');
 
 let router = new Router({
     prefix: '/api'
@@ -8,4 +8,4 @@ router.get('/flash', ApiControl.flash);
 router.get('/column', ApiControl.column);
 router.get('/detail', ApiControl.detail);
 
-export default router;
+module.exports = router;

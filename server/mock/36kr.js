@@ -1,6 +1,6 @@
-import fetch from './fetch';
-import https from 'https';
-import cheerio from 'cheerio';
+const fetch = require('./fetch');
+const https = require('https');
+const cheerio = require('cheerio');
 
 class Mock {
     fetchFlash(b_id, page = 10) {
@@ -35,4 +35,4 @@ class Mock {
     }
 }
 
-export default new Mock();
+module.exports = new Mock();
