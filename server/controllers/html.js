@@ -1,25 +1,30 @@
-import mock from '../mock/36kr';
-import { matchRoutes } from 'react-router-config';
-import routerConfig from '../../app/router';
-import createStore from '../../app/redux/store/createStore';
-import templating from '../templating'
+import fs from 'fs';
+import { renderToString } from 'react-dom/server'
+import { StaticRouter } from 'react-router-dom'
+import routerConfig from '../app/router'
+import React from 'react';
+import path from 'path';
+import { Provider } from 'react-redux';
+import { renderRoutes } from 'react-router-config';
+import config from './config';
+
+function templating(path) {
+    const template = fs.readFileSync(path, 'utf-8');
+    return props => template.replace(/{{([\s\S]*?)}}/g, (_, key) => props[key.trim()]);
+}
 
 export default async (ctx, next) => {
-    const store = createStore();
-    const routes = matchRoutes(routerConfig, ctx.url);
-    if (routes.length > 0) {
-        // 等所有数据请求回来之后在render
-        const promises = routes
-        .filter(item => item.route.component.asyncData)
-        .map(item => {
-            return item.route.component.asyncData(store, {
-                params: ctx.params,
-                query: ctx.query
-            })
+    const render = templating(config.templatePath);
+    try {
+        const html = renderToString();
+        const body = render({
+            html,
+            data: JSON.stringify(ctx.store.getState(), null, 4),
         });
-        await Promise.all(promises);
-        templating(ctx, store, {});
-        return next();
+        ctx.body = body;
+        ctx.type = 'text/html';
+    } catch(err) {
+        ctx.body = err.message;
+        ctx.type = err.code;
     }
-    return next();
 }

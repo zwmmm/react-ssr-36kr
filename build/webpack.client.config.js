@@ -8,10 +8,12 @@ const { resolve } = require('./utils');
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const mode = config.production;
 
 module.exports = merge(baseConfig(mode), {
+    entry: resolve('app/client-entry.js'),
     devtool: mode.devtool,
     mode: mode.env,
     optimization: {
@@ -49,6 +51,7 @@ module.exports = merge(baseConfig(mode), {
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify(mode.env),
+                VUE_ENV: '"client"'
             }
         }),
 
@@ -66,6 +69,11 @@ module.exports = merge(baseConfig(mode), {
                 from: resolve('static'),
                 to: resolve('dist')
             }
-        ])
+        ]),
+
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: resolve(mode.template)
+        })
     ],
 })

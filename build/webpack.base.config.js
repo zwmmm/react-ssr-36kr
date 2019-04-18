@@ -1,4 +1,3 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { resolve } = require('./utils');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -77,12 +76,5 @@ module.exports = config => {
         },
         // 第三方依赖，可以写在这里，不打包
         externals: {},
-        // 插件
-        plugins: [
-            new HtmlWebpackPlugin({
-                filename: 'index.html',
-                template: resolve(config.template)
-            })
-        ]
     }
 }

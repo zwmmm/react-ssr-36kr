@@ -4,10 +4,12 @@
     "description": "使用react+koa的音乐同构项目",
     "main": "main.js",
     "scripts": {
-        "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.prod.config.js",
+        "build:client": "cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.client.config.js",
+        "build:server": "cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.server.config.js",
+        "build": "npm run build:client && npm run build:server",
         "static": "cross-env NODE_ENV=development webpack-dev-server --hot --config build/webpack.dev.config.js",
         "server:dev": "cross-env NODE_ENV=development node ./server/index.js",
-        "server": "cross-env NODE_ENV=production node ./server/index.js"
+        "start": "cross-env NODE_ENV=production node ./server/index.js"
     },
     "keywords": [
         "react",
@@ -75,6 +77,7 @@
         "webpack": "^4.29.5",
         "webpack-cli": "^3.2.3",
         "webpack-dev-server": "^3.2.1",
-        "webpack-merge": "^4.2.1"
+        "webpack-merge": "^4.2.1",
+        "webpack-node-externals": "^1.7.2"
     }
 }
