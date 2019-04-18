@@ -1,5 +1,4 @@
 import Koa from 'koa';
-import templating from './templating';
 import router from './router';
 import path from 'path';
 import config from './config'
