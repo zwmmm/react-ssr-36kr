@@ -18,7 +18,7 @@ module.exports = async (ctx, next) => {
         const html = renderToString(jsx);
         const body = render({
             html,
-            data: JSON.stringify(ctx.store.getState(), null, 4),
+            data: JSON.stringify(ctx.store.getState()),
         });
         ctx.body = body;
         ctx.type = 'text/html';
