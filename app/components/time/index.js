@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Time.less';
+import styles from './time.less';
 
 let minute = 1000 * 60;
 let hour = minute * 60;

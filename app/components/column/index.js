@@ -1,8 +1,8 @@
 import React from 'react';
-import Loading from '../components/Spinner';
+import Loading from '../spinner';
 import { Link } from 'react-router-dom';
-import Time from './Time';
-import styles from './Column.less';
+import Time from '../time';
+import styles from './column.less';
 
 const Item = props => {
     const { cover, title, user_info, published_at, id } = props;

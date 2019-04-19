@@ -1,6 +1,6 @@
 import React, { useState, Children, cloneElement } from 'react';
 import classname from 'classnames';
-import styles from './Tabbar.less'
+import styles from './tab-bar.less'
 
 const Title = props => {
     const { info, onClick, active } = props;
@@ -14,7 +14,7 @@ const Title = props => {
     )
 }
 
-function TabBar(props) {
+function Index(props) {
     let [ active, setActive ] = useState(0);
     let style = {
         'transform': `translate3d(${ active * -100 }%, 0px, 0px)`
@@ -41,4 +41,4 @@ function TabBar(props) {
     )
 }
 
-export default TabBar;
+export default Index;

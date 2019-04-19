@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Loading.less';
+import styles from './loading.less';
 import classnames from 'classnames';
 
 export default () => (

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import * as detailActions from '../redux/actions/detail';
-import Loading from '../components/Loading';
+import Loading from '../components/loading';
 import styles from './detail.less';
 
 function mapStateToProps(state) {

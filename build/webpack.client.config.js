@@ -3,19 +3,17 @@ const webpack = require('webpack');
 const cleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const baseConfig = require('./webpack.base.config');
-const config = require('./config');
+const config = require('./config').production;
 const { resolve } = require('./utils');
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const mode = config.production;
-
-module.exports = merge(baseConfig(mode), {
+module.exports = merge(baseConfig(config), {
     entry: resolve('app/client-entry.js'),
-    devtool: mode.devtool,
-    mode: mode.env,
+    devtool: config.devtool,
+    mode: config.env,
     optimization: {
         splitChunks: {
             chunks: 'initial',
@@ -50,7 +48,7 @@ module.exports = merge(baseConfig(mode), {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: JSON.stringify(mode.env),
+                NODE_ENV: JSON.stringify(config.env),
                 VUE_ENV: '"client"'
             }
         }),
@@ -60,7 +58,7 @@ module.exports = merge(baseConfig(mode), {
 
         // 抽离css，命名采用contenthash
         new MiniCssExtractPlugin({
-            filename: 'css/[name].css',
+            filename: config.noHash ? 'css/[name].css' : 'css/[name].[chunkhash].css',
         }),
 
         // cp 静态资源
@@ -72,8 +70,8 @@ module.exports = merge(baseConfig(mode), {
         ]),
 
         new HtmlWebpackPlugin({
-            filename: mode.templateName,
-            template: resolve(mode.template)
+            filename: config.templateName,
+            template: resolve(config.template)
         })
     ],
 })

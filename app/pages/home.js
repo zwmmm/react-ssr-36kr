@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as homeActions from '../redux/actions/home';
-import News from '../components/News';
-import Top from '../components/Top';
-import TabBar from '../components/TabBar';
-import Column from '../components/Column';
+import New from '../components/new';
+import Top from '../components/top';
+import TabBar from '../components/tab-bar';
+import Column from '../components/column';
 
 function mapStateToProps(state) {
     return { ...state.home };
@@ -55,7 +55,7 @@ class Home extends React.Component {
                 <Top/>
                 <TabBar tabs={ this.state.tabs }>
                     <Column loaded={ columnLoaded } data={ column } onReachBottom={ this.handlerColumnReachBottom }/>
-                    <News loaded={ loaded } data={ news } onReachBottom={ this.handlerReachBottom }/>
+                    <New loaded={ loaded } data={ news } onReachBottom={ this.handlerReachBottom }/>
                 </TabBar>
             </div>
         )

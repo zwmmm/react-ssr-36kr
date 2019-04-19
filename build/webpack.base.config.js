@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = config => {
     const styleLoader = process.env.NODE_ENV === 'development'
         ? 'style-loader'
-        : MiniCssExtractPlugin.loader
+        : MiniCssExtractPlugin.loader;
 
     return {
         // 打包的入口文件
@@ -47,9 +47,10 @@ module.exports = config => {
                     use: [
                         styleLoader,
                         {
-                            lader: 'css-loader',
+                            loader: 'css-loader',
                             options: {
                                 modules: true,
+                                localIdentName: '[path][local]-[hash:base64:5]'
                             },
                         },
                     ]
@@ -60,9 +61,10 @@ module.exports = config => {
                     use: [
                         styleLoader,
                         {
-                            lader: 'css-loader',
+                            loader: 'css-loader',
                             options: {
                                 modules: true,
+                                localIdentName: '[path][local]-[hash:base64:5]'
                             },
                         },
                         'less-loader'
@@ -88,5 +90,8 @@ module.exports = config => {
         },
         // 第三方依赖，可以写在这里，不打包
         externals: {},
+        plugins: [
+            new MiniCssExtractPlugin(),
+        ],
     }
 }

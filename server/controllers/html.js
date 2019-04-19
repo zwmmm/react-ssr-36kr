@@ -4,7 +4,7 @@ const path = require('path');
 
 const env = process.env.NODE_ENV
 const config = require('../../build/config')[env];
-const serverBundle = require('../../dist/server-bundle');
+const serverBundle = require('../../dist/js/server-bundle');
 
 function templating(path) {
     const template = fs.readFileSync(path, 'utf-8');

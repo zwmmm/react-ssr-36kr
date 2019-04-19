@@ -1,7 +1,7 @@
 import React from 'react'
-import Loading from '../components/Spinner'
-import Time from '../components/Time'
-import styles from './New.less'
+import Loading from '../spinner'
+import Time from '../time'
+import styles from './new.less'
 
 function getDate(time) {
     let sTime = new Date(time);
@@ -45,7 +45,7 @@ const Item = props => {
     )
 }
 
-export default class News extends React.Component {
+export default class Index extends React.Component {
     constructor(props) {
         super(props);
     }
