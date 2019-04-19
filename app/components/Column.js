@@ -1,7 +1,8 @@
 import React from 'react';
 import Loading from '../components/Spinner';
 import { Link } from 'react-router-dom';
-import Time from './Time'
+import Time from './Time';
+import styles from './Column.less';
 
 const Item = props => {
     const { cover, title, user_info, published_at, id } = props;
@@ -10,12 +11,12 @@ const Item = props => {
         background: `url('${ cover }') no-repeat center / cover`
     }
     return (
-        <li className="column-item">
+        <li className={ styles['column-item'] }>
             <Link to={`/detail/${ id }`}>
-                <div className="column-left" style={ style }/>
-                <div className="column-right">
-                    <h2 className="column-right-title">{ title }</h2>
-                    <div className="column-right-info">
+                <div className={ styles['column-left'] } style={ style }/>
+                <div className={ styles['column-right'] }>
+                    <h2 className={ styles['column-right-title'] }>{ title }</h2>
+                    <div className={ styles['column-right-info'] }>
                         { userInfo.name }·<Time time={ published_at }/>
                     </div>
                 </div>

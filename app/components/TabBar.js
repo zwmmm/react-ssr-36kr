@@ -1,11 +1,12 @@
 import React, { useState, Children, cloneElement } from 'react';
 import classname from 'classnames';
+import styles from './Tabbar.less'
 
 const Title = props => {
     const { info, onClick, active } = props;
     return (
         <div
-            className={ classname('tab-bar-title', { active }) }
+            className={ classname(styles['tab-bar-title'], { active }) }
             onClick={ () => onClick(info.index) }
         >
             { info.title }
@@ -21,7 +22,7 @@ function TabBar(props) {
     const { tabs, children } = props;
     return (
         <div>
-            <div className="tab-bar-top">
+            <div className={ styles['tab-bar-top'] }>
                 { tabs.map(item => <Title
                     info={ item }
                     key={ item.index }
@@ -29,7 +30,7 @@ function TabBar(props) {
                     onClick={ index => setActive(index) }
                 />) }
             </div>
-            <div className="tab-bar-content" style={ style }>
+            <div className={ styles['tab-bar-content'] } style={ style }>
                 { Children.map(children, (item, i) => (
                     cloneElement(item, {
                         style: active === i ? { 'height': 'calc(100vh - 92px)', 'overflowY': 'scroll' } : {}

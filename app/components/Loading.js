@@ -1,17 +1,19 @@
-import React from 'react'
+import React from 'react';
+import styles from './Loading.less';
+import classnames from 'classnames';
 
 export default () => (
-    <div className="page-loading">
-        <div className="self-building-square-spinner">
-            <div className="square"></div>
-            <div className="square"></div>
-            <div className="square"></div>
-            <div className="square clear"></div>
-            <div className="square"></div>
-            <div className="square"></div>
-            <div className="square clear"></div>
-            <div className="square"></div>
-            <div className="square"></div>
+    <div className={ styles['page-loading'] }>
+        <div className={ styles['self-building-square-spinner'] }>
+            <div className={ styles.square }></div>
+            <div className={ styles.square }></div>
+            <div className={ styles.square }></div>
+            <div className={ classnames([styles.square, styles.clear]) }></div>
+            <div className={ styles.square }></div>
+            <div className={ styles.square }></div>
+            <div className={ classnames([styles.square, styles.clear]) }></div>
+            <div className={ styles.square }></div>
+            <div className={ styles.square }></div>
         </div>
     </div>
 )

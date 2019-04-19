@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as homeActions from '../redux/actions/home';
-import News from '../components/News'
-import Top from '../components/Top'
-import TabBar from '../components/TabBar'
-import Column from '../components/Column'
+import News from '../components/News';
+import Top from '../components/Top';
+import TabBar from '../components/TabBar';
+import Column from '../components/Column';
 
 function mapStateToProps(state) {
     return { ...state.home };

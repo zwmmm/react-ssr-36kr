@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import * as detailActions from '../redux/actions/detail';
 import Loading from '../components/Loading';
+import styles from './detail.less';
 
 function mapStateToProps(state) {
     return { ...state.detail };
@@ -37,7 +38,7 @@ class Detail extends React.Component {
         const data = this.props.data;
         const page = this.props.loaded
             ? <Loading/>
-            : <section className="article-body" dangerouslySetInnerHTML={ { __html: data } }/>
+            : <section className={ styles['article-body'] } dangerouslySetInnerHTML={ { __html: data } }/>
         return <Fragment>{ page }</Fragment>
     }
 }

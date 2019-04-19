@@ -46,7 +46,12 @@ module.exports = config => {
                     test: /\.css/,
                     use: [
                         styleLoader,
-                        'css-loader',
+                        {
+                            lader: 'css-loader',
+                            options: {
+                                modules: true,
+                            },
+                        },
                     ]
                 },
                 {
@@ -54,7 +59,12 @@ module.exports = config => {
                     include: [resolve('app')],
                     use: [
                         styleLoader,
-                        'css-loader',
+                        {
+                            lader: 'css-loader',
+                            options: {
+                                modules: true,
+                            },
+                        },
                         'less-loader'
                     ]
                 },

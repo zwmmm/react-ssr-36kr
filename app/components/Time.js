@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './Time.less';
 
 let minute = 1000 * 60;
 let hour = minute * 60;
@@ -48,4 +49,4 @@ function getDate(dateTimeStamp) {
     }
 }
 
-export default props => <span className="time">{ getDate(props.time) }</span>
+export default props => <span className={ styles.time }>{ getDate(props.time) }</span>

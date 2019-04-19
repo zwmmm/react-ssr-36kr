@@ -1,6 +1,7 @@
 import React from 'react'
 import Loading from '../components/Spinner'
 import Time from '../components/Time'
+import styles from './New.less'
 
 function getDate(time) {
     let sTime = new Date(time);
@@ -11,7 +12,7 @@ function getDate(time) {
 }
 
 const Left = props => (
-    <div className="left">
+    <div className={ styles.left }>
         <div>
             <div>{ props.m }月</div>
             <div>{ props.d }</div>
@@ -29,14 +30,14 @@ const Item = props => {
         isChange = m !== time.m || d !== time.d;
     }
     return (
-        <li className="item">
+        <li className={ styles.item }>
             { isChange ? <Left m={ m } d={ d }/> : null }
-            <div className="right">
-                <h2 className="title">{ title }</h2>
-                <p className="descript">{ description }</p>
-                <div className="user">
-                    <img className="avatar" src={ user.avatar_url }/>
-                    <span className="user-name">{ user.name }</span>
+            <div className={ styles.right }>
+                <h2 className={ styles.title }>{ title }</h2>
+                <p className={ styles.descript }>{ description }</p>
+                <div className={ styles.user }>
+                    <img className={ styles.avatar } src={ user.avatar_url }/>
+                    <span className={ styles['user-name'] }>{ user.name }</span>
                     <Time time={ published_at }/>
                 </div>
             </div>
