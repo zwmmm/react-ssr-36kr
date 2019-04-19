@@ -13,8 +13,10 @@ module.exports = config => {
         output: {
             path: resolve(config.output),
             publicPath: config.publicPath,
-            filename: config.noHash ? '[name].js' : '[name].[chunkhash].js',
-            chunkFilename: config.noHash ? '[name].js' : '[name].[chunkhash].js'
+            // 入口文件生产的js
+            filename: config.noHash ? 'js/[name].js' : 'js/[name].[chunkhash].js',
+            // 非入口文件生产的js
+            chunkFilename: config.noHash ? 'js/[name].js' : 'js/[name].[chunkhash].js'
         },
         // 配置各种loader
         module: {

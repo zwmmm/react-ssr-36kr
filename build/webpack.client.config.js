@@ -67,7 +67,7 @@ module.exports = merge(baseConfig(mode), {
         new CopyWebpackPlugin([
             {
                 from: resolve('static'),
-                to: resolve('dist')
+                to: resolve('dist/static')
             }
         ]),
 
