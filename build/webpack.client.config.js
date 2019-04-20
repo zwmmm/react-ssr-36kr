@@ -1,20 +1,45 @@
 const merge = require('webpack-merge');
 const webpack = require('webpack');
-const cleanWebpackPlugin = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const baseConfig = require('./webpack.base.config');
-const config = require('./config').production;
 const { resolve } = require('./utils');
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const config = require('./config')[process.env.NODE_ENV];
 
-module.exports = merge(baseConfig(config), {
+const clientConfig = merge(baseConfig(config), {
     entry: resolve('app/client-entry.js'),
     devtool: config.devtool,
     mode: config.env,
-    optimization: {
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify(config.env),
+                VUE_ENV: '"client"'
+            }
+        }),
+
+        // cp 静态资源
+        new CopyWebpackPlugin([
+            {
+                from: resolve('static'),
+                to: resolve('dist/static')
+            }
+        ]),
+
+        new HtmlWebpackPlugin({
+            filename: config.templateName,
+            template: resolve(config.template)
+        })
+    ],
+})
+
+if (process.env.NODE_ENV === 'production') {
+    const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+    const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+    const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+    const cleanWebpackPlugin = require('clean-webpack-plugin');
+
+    clientConfig.optimization = {
         splitChunks: {
             chunks: 'initial',
             minSize: 0,
@@ -44,15 +69,8 @@ module.exports = merge(baseConfig(config), {
             }),
             new OptimizeCSSAssetsPlugin({})
         ]
-    },
-    plugins: [
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify(config.env),
-                VUE_ENV: '"client"'
-            }
-        }),
-
+    }
+    clientConfig.plugins.push(...[
         // 清空构建目录
         new cleanWebpackPlugin([resolve('dist')]),
 
@@ -60,18 +78,7 @@ module.exports = merge(baseConfig(config), {
         new MiniCssExtractPlugin({
             filename: config.noHash ? 'css/[name].css' : 'css/[name].[chunkhash].css',
         }),
+    ])
+}
 
-        // cp 静态资源
-        new CopyWebpackPlugin([
-            {
-                from: resolve('static'),
-                to: resolve('dist/static')
-            }
-        ]),
-
-        new HtmlWebpackPlugin({
-            filename: config.templateName,
-            template: resolve(config.template)
-        })
-    ],
-})
+module.exports = clientConfig;

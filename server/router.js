@@ -1,0 +1,1 @@
+const Router = require('koa-router');const HomeControl = require('./controllers/home');const DetailControl = require('./controllers/detail');let router = new Router({    prefix: '/api'});router.get('/flash', HomeControl.flash);router.get('/column', HomeControl.column);router.get('/detail', DetailControl.detail);module.exports = router;

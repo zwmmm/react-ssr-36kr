@@ -20,6 +20,14 @@ module.exports = {
     },
     // 开发环境
     development: {
-
+        port: 8000,                             // 服务器启动的端口号
+        env: 'development',                     // 环境
+        api: 'http://localhost:8000/api',       // api 接口地址
+        publicPath: '/',                        // 静态资源地址
+        devtool: 'eval',                        // devtool
+        noHash: true,                           // 生产的静态资源是否需要hash值
+        template: 'template/build.html',        // htmlPlugin 插件用的模版
+        templateName: 'server.tpl.html',        // 生产的html模板信息
+        output: 'dist',                         // 打包的静态资源路径
     }
 };

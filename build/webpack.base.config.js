@@ -1,10 +1,9 @@
 const { resolve } = require('./utils');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const isPro = process.env.NODE_ENV === 'production';
 
 module.exports = config => {
-    const styleLoader = process.env.NODE_ENV === 'development'
-        ? 'style-loader'
-        : MiniCssExtractPlugin.loader;
+    const styleLoader = isPro ? MiniCssExtractPlugin.loader : 'style-loader';
 
     return {
         // 打包的入口文件
@@ -90,8 +89,6 @@ module.exports = config => {
         },
         // 第三方依赖，可以写在这里，不打包
         externals: {},
-        plugins: [
-            new MiniCssExtractPlugin(),
-        ],
+        plugins: isPro ? [new MiniCssExtractPlugin()] : [],
     }
 }
