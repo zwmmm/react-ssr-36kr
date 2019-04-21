@@ -33,4 +33,28 @@ const clientConfig = merge(baseConfig(config), {
     ],
 })
 
+if (process.env.NODE_ENV === 'production') {
+    clientConfig.optimization.splitChunks = {
+        chunks: 'initial',
+        minSize: 0,
+        maxAsyncRequests: 5,
+        maxInitialRequests: 3,
+        automaticNameDelimiter: '~',
+        name: true,
+        cacheGroups: {
+            vendor: {
+                test: /[\\/]node_modules[\\/]/,
+                chunks: 'all',
+                name: 'vendor',
+                minChunks: 1,
+                priority: 10
+            }
+        }
+    };
+
+    clientConfig.optimization.runtimeChunk = {
+        name: 'manifest',
+    };
+}
+
 module.exports = clientConfig;

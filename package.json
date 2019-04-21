@@ -6,7 +6,7 @@
     "scripts": {
         "build:client": "cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.client.config.js",
         "build:server": "cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.server.config.js",
-        "build": "npm run build:client && npm run build:server",
+        "build": "rimraf dist && npm run build:client && npm run build:server",
         "start": "cross-env NODE_ENV=production node ./server/app.js",
         "dev": "cross-env NODE_ENV=development node ./server/app.js"
     },
@@ -74,6 +74,7 @@
         "memory-fs": "^0.4.1",
         "mini-css-extract-plugin": "^0.5.0",
         "optimize-css-assets-webpack-plugin": "^5.0.1",
+        "rimraf": "^2.6.3",
         "style-loader": "^0.23.1",
         "uglifyjs-webpack-plugin": "^2.1.2",
         "webpack": "^4.29.5",
