@@ -14,9 +14,6 @@ module.exports = {
         publicPath: '/',                        // 静态资源地址
         devtool: '#source-map',                 // devtool
         noHash: false,                          // 生产的静态资源是否需要hash值
-        template: 'template/build.html',        // htmlPlugin 插件用的模版
-        templateName: 'server.tpl.html',        // 生产的html模板信息
-        output: 'dist',                         // 打包的静态资源路径
     },
     // 开发环境
     development: {
@@ -26,8 +23,5 @@ module.exports = {
         publicPath: '/',                        // 静态资源地址
         devtool: 'eval',                        // devtool
         noHash: true,                           // 生产的静态资源是否需要hash值
-        template: 'template/build.html',        // htmlPlugin 插件用的模版
-        templateName: 'server.tpl.html',        // 生产的html模板信息
-        output: 'dist',                         // 打包的静态资源路径
     }
 };

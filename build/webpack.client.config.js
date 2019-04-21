@@ -27,8 +27,8 @@ const clientConfig = merge(baseConfig(config), {
         ]),
 
         new HtmlWebpackPlugin({
-            filename: config.templateName,
-            template: resolve(config.template)
+            filename: 'server.tpl.html',
+            template: resolve('app/index.html')
         })
     ],
 })

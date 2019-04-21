@@ -10,7 +10,7 @@ module.exports = config => {
         entry: resolve('app/main.js'),
         // 打包的出口
         output: {
-            path: resolve(config.output),
+            path: resolve('dist'),
             publicPath: config.publicPath,
             // 入口文件生产的js
             filename: config.noHash ? 'js/[name].js' : 'js/[name].[chunkhash].js',
