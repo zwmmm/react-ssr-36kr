@@ -19,12 +19,13 @@ npm i
 ```js
 npm run dev
 ```
+访问`localhost:8000`
 
 #### 生产环境
 
 ```js
 npm run build
-npm run server
+npm start
 ```
 
-访问`localhost:8001`
+访问`localhost`
