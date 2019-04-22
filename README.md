@@ -17,8 +17,7 @@ npm i
 #### 开发环境
 
 ```js
-npm run static
-npm run server:dev
+npm run dev
 ```
 
 #### 生产环境

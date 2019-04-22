@@ -23,7 +23,7 @@ class Home extends React.Component {
             { title: '科技新闻', index: 0 },
             { title: '24h快讯', index: 1 }
         ],
-        columnPage: 0,
+        columnPage: this.props.column.length > 0 ? 1 : 0,
     }
 
     static asyncData(store) {

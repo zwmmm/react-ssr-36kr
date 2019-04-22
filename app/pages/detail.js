@@ -20,9 +20,9 @@ class Detail extends React.Component {
         super();
     }
 
-    static asyncData(store, route) {
+    static asyncData(store, match) {
         const { fetchDetail } = mapDispatchToProps(store.dispatch);
-        return fetchDetail(route.params.id);
+        return fetchDetail(match.params.id);
     }
 
     componentDidMount() {

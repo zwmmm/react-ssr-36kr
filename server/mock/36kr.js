@@ -11,7 +11,7 @@ class Mock {
         return fetch('/search-column/23', { per_page: 10, page })
     }
 
-    fetchDetail(id = 5186022) {
+    fetchDetail(id = 5197296) {
         return new Promise(resolve => {
             https.get({
                 hostname:'36kr.com',

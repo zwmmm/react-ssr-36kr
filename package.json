@@ -8,7 +8,7 @@
         "build:server": "cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.server.config.js",
         "build": "rimraf dist && npm run build:client && npm run build:server",
         "start": "cross-env NODE_ENV=production node ./server/app.js",
-        "dev": "cross-env NODE_ENV=development node ./server/app.js"
+        "dev": "cross-env NODE_ENV=development nodemon ./server/app.js"
     },
     "keywords": [
         "react",

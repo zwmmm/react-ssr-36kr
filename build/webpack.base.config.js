@@ -1,9 +1,10 @@
 const { resolve } = require('./utils');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const isPro = process.env.NODE_ENV === 'production';
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const cleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = config => {
-    const styleLoader = isPro ? MiniCssExtractPlugin.loader : 'style-loader';
 
     const baseConfig = {
         // 打包的入口文件
@@ -44,7 +45,7 @@ module.exports = config => {
                 {
                     test: /\.css/,
                     use: [
-                        styleLoader,
+                        MiniCssExtractPlugin.loader,
                         {
                             loader: 'css-loader',
                             options: {
@@ -58,7 +59,7 @@ module.exports = config => {
                     test: /\.less/,
                     include: [resolve('app')],
                     use: [
-                        styleLoader,
+                        MiniCssExtractPlugin.loader,
                         {
                             loader: 'css-loader',
                             options: {
@@ -89,15 +90,12 @@ module.exports = config => {
         },
         // 第三方依赖，可以写在这里，不打包
         externals: {},
-        plugins: [],
-    }
-
-    if (isPro) {
-        const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-        const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-        const cleanWebpackPlugin = require('clean-webpack-plugin');
-
-        baseConfig.optimization = {
+        plugins: [
+            new MiniCssExtractPlugin({
+                filename: config.noHash ? 'css/[name].css' : 'css/[name].[chunkhash].css',
+            })
+        ],
+        optimization: {
             // 压缩css，由于配置css的压缩会覆盖默认的js压缩，所以js压缩也需要手动配置下
             minimizer: [
                 new UglifyJsPlugin({
@@ -108,11 +106,7 @@ module.exports = config => {
                 new OptimizeCSSAssetsPlugin({})
             ]
         }
-
-        baseConfig.plugins.push(new MiniCssExtractPlugin({
-            filename: config.noHash ? 'css/[name].css' : 'css/[name].[chunkhash].css',
-        }))
-
-        return baseConfig;
     }
+
+    return baseConfig;
 }
