@@ -5,6 +5,7 @@ import New from '../components/new';
 import Top from '../components/top';
 import TabBar from '../components/tab-bar';
 import Column from '../components/column';
+import { Button } from 'antd-mobile';
 
 function mapStateToProps(state) {
     return { ...state.home };
@@ -53,6 +54,7 @@ class Home extends React.Component {
         return (
             <div>
                 <Top/>
+                <Button>点击</Button>
                 <TabBar tabs={ this.state.tabs }>
                     <Column loaded={ columnLoaded } data={ column } onReachBottom={ this.handlerColumnReachBottom }/>
                     <New loaded={ loaded } data={ news } onReachBottom={ this.handlerReachBottom }/>

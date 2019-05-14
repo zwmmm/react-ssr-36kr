@@ -2,7 +2,6 @@ const { resolve } = require('./utils');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const cleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = config => {
 
@@ -34,6 +33,7 @@ module.exports = config => {
                             plugins: [
                                 "@babel/plugin-transform-runtime",
                                 ["@babel/plugin-proposal-class-properties", { "loose": false }],
+                                // ["import", { libraryName: "antd-mobile", style: "css" }]
                             ]
                         }
                     }
@@ -44,6 +44,7 @@ module.exports = config => {
                 },
                 {
                     test: /\.css/,
+                    include: [resolve('app')],
                     use: [
                         MiniCssExtractPlugin.loader,
                         {
@@ -53,6 +54,15 @@ module.exports = config => {
                                 localIdentName: '[path][local]-[hash:base64:5]'
                             },
                         },
+                    ]
+                },
+                // 对node_modules中的css不做模块化处理
+                {
+                    test: /\.css/,
+                    include: [resolve('node_modules')],
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        'css-loader'
                     ]
                 },
                 {

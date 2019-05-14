@@ -1,4 +1,3 @@
-import ReactDom from 'react-dom';
 import { StaticRouter } from 'react-router-dom';
 import React from 'react';
 import { Provider } from 'react-redux';

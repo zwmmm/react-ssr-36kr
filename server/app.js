@@ -36,5 +36,5 @@ app.use(require('koa-static')(path.join(__dirname, '../dist')));
 app.use(router.routes(), router.allowedMethods());
 
 app.listen(config.port, () => {
-    console.log(`node服务已启动，服务地址为：locahost:${config.port}`);
+    console.log(`node服务已启动，服务地址为：localhost:${config.port}`);
 });
