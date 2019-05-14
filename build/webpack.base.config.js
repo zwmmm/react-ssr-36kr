@@ -33,7 +33,7 @@ module.exports = config => {
                             plugins: [
                                 "@babel/plugin-transform-runtime",
                                 ["@babel/plugin-proposal-class-properties", { "loose": false }],
-                                // ["import", { libraryName: "antd-mobile", style: "css" }]
+                                ["import", { libraryName: "antd-mobile", style: "css" }]
                             ]
                         }
                     }

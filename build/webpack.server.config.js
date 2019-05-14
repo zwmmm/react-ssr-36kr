@@ -16,7 +16,11 @@ module.exports = merge(baseConfig(config), {
     // 服务端打包的时候忽略外部的npm包
     externals: nodeExternals({
         // 当然外部的css还是可以打进来的
-        whitelist: /\.css$/
+        whitelist: [
+            /\.css$/,
+            // antd-mobile 按需加载的css是用js加载进来的，所以需要单独匹配下
+            new RegExp(`antd-mobile\/lib\/(.+)\/style\/css`),
+        ]
     }),
     plugins: [
         new webpack.DefinePlugin({
