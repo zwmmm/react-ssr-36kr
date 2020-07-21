@@ -9,7 +9,7 @@ const app = new Koa();
 const env = process.env.NODE_ENV
 const config = require('../build/config')[env];
 const isPro = process.env.NODE_ENV === 'production';
-
+console.info('sdsd')
 
 let serverBundle;
 let template;
